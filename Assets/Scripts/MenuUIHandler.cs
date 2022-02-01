@@ -15,16 +15,18 @@ public class MenuUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MainManager.Instance.LoadScore();
+
         if (MainManager.Instance.bestScore > 0)
         {
-            bestScoreText.text = "Best Score: " + MainManager.Instance.Name + ": " + MainManager.Instance.bestScore;
+            bestScoreText.text = "Best Score: " + MainManager.Instance.highScoreName + ": " + MainManager.Instance.bestScore;
         }
     }
 
     public void StartNew()
     {
-        MainManager.Instance.Name = inputName.text;
-        Debug.Log("Name is " + MainManager.Instance.Name);
+        MainManager.Instance.userName = inputName.text;
+        Debug.Log("userName is " + MainManager.Instance.userName);
         SceneManager.LoadScene(1);
     }
 

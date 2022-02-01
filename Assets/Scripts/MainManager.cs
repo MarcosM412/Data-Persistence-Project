@@ -8,7 +8,8 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
 
     public int bestScore = 0;
-    public string Name;
+    public string highScoreName;
+    public string userName;
 
     private void Awake()
     {
@@ -20,22 +21,20 @@ public class MainManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        LoadScore();
     }
 
     [System.Serializable]
     class SaveData
     {
         public int bestScore;
-        public string Name;
+        public string highScoreName;
     }
 
     public void SaveScore()
     {
         SaveData data = new SaveData();
         data.bestScore = bestScore;
-        data.Name = Name;
+        data.highScoreName = highScoreName;
 
         string json = JsonUtility.ToJson(data);
 
@@ -52,7 +51,7 @@ public class MainManager : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
             bestScore = data.bestScore;
-            Name = data.Name;
+            highScoreName = data.highScoreName;
         }
     }
 }
